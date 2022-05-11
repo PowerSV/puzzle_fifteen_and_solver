@@ -32,7 +32,7 @@
             <Font name="Rockwell Extra Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="okRules" layoutX="106.0" layoutY="340.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="87.0" style="-fx-background-color: #3F48CC;" text="OK" textFill="WHITE">
+      <Button fx:id="okButton" layoutX="106.0" layoutY="340.0" mnemonicParsing="false" onAction="#clickOk" prefHeight="28.0" prefWidth="87.0" style="-fx-background-color: #3F48CC;" text="OK" textFill="WHITE">
          <font>
             <Font name="Rockwell Extra Bold" size="18.0" />
          </font>

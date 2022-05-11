@@ -10,12 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Controller {
 
-    private Stage rules;
 
     @FXML
     private GridPane gridPane;
@@ -26,19 +24,31 @@ public class Controller {
     @FXML
     private Button controlButton;
 
-    @FXML
-    private Button okRules;
+    private boolean isPressed = false;
 
     @FXML
-    void click() throws IOException {
-        rules.showAndWait();
+    private Button okButton;
+
+    @FXML
+    void clickOk() {
+        Stage stage = (Stage) okButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
-    private void initialize() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("rules.fxml"));
-        rules = new Stage();
-        rules.setScene(new Scene(root));
+    void click() throws IOException {
+        if (!isPressed) {
+            isPressed = true;
+            Parent root = FXMLLoader.load(getClass().getResource("rules.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            isPressed = false;
+        }
+    }
+
+    @FXML
+    private void initialize() {
     }
 
 }
