@@ -5,11 +5,12 @@ import java.util.Random;
 
 public class Field {
 
-    private static final int SIZE = 4;
+    public static final int SIZE = 4;
 
-    private final int[][] field;
+    private int[][] field;
     private int zeroX;
     private int zeroY;
+    private int score;
 
     public Field() {
         field = new int[][]{
@@ -19,10 +20,23 @@ public class Field {
                 {4, 8, 12, 0}};
         zeroX = 3;
         zeroY = 3;
+        score = 0;
     }
 
     public int[][] getField() {
         return field;
+    }
+
+    public void setField(int[][] field) {
+        this.field = field;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getValue(int x, int y) {
+        return field[x][y];
     }
 
     public boolean moveUp(){
@@ -30,6 +44,7 @@ public class Field {
             field[zeroX][zeroY] = field[zeroX][zeroY + 1];
             field[zeroX][zeroY + 1] = 0;
             zeroY++;
+            score++;
             return true;
         }
         return false;
@@ -40,6 +55,7 @@ public class Field {
             field[zeroX][zeroY] = field[zeroX][zeroY - 1];
             field[zeroX][zeroY - 1] = 0;
             zeroY--;
+            score++;
             return true;
         }
         return false;
@@ -50,6 +66,7 @@ public class Field {
             field[zeroX][zeroY] = field[zeroX + 1][zeroY];
             field[zeroX + 1][zeroY] = 0;
             zeroX++;
+            score++;
             return true;
         }
         return false;
@@ -60,6 +77,7 @@ public class Field {
             field[zeroX][zeroY] = field[zeroX - 1][zeroY];
             field[zeroX - 1][zeroY] = 0;
             zeroX--;
+            score++;
             return true;
         }
         return false;
@@ -85,13 +103,14 @@ public class Field {
                     break;
             }
         }
+        score = 0;
     }
 
-    public int[][] arrayCopy(int[][] srcArray) {
-        int[][] resultArray = new int[srcArray.length][];
-        for (int i = 0; i < srcArray.length; i++) {
-            resultArray[i] = Arrays.copyOf(srcArray[i], srcArray[i].length);
-        }
-        return resultArray;
-    }
+//    public int[][] arrayCopy(int[][] srcArray) {
+//        int[][] resultArray = new int[srcArray.length][];
+//        for (int i = 0; i < srcArray.length; i++) {
+//            resultArray[i] = Arrays.copyOf(srcArray[i], srcArray[i].length);
+//        }
+//        return resultArray;
+//    }
 }

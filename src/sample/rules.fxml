@@ -5,37 +5,43 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #0D062D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <children>
-      <Label alignment="CENTER" contentDisplay="TOP" layoutX="65.0" layoutY="14.0" prefHeight="50.0" prefWidth="169.0" text="How to play?" textFill="WHITE">
-         <font>
-            <Font name="Rockwell Extra Bold" size="22.0" />
-         </font>
-      </Label>
-      <Label contentDisplay="TOP" layoutX="14.0" layoutY="81.0" prefHeight="50.0" prefWidth="222.0" text="WASD / &lt;&gt; - to move" textFill="WHITE">
-         <font>
-            <Font name="Rockwell Extra Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label contentDisplay="TOP" layoutX="14.0" layoutY="132.0" prefHeight="50.0" prefWidth="222.0" text="R - to shuffle" textFill="WHITE">
-         <font>
-            <Font name="Rockwell Extra Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label contentDisplay="TOP" layoutX="14.0" layoutY="200.0" prefHeight="50.0" prefWidth="222.0" text="E - to run solver" textFill="WHITE">
-         <font>
-            <Font name="Rockwell Extra Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label contentDisplay="TOP" layoutX="13.0" layoutY="274.0" prefHeight="50.0" prefWidth="274.0" text="Space - to show solver step" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="Rockwell Extra Bold" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="okButton" layoutX="106.0" layoutY="340.0" mnemonicParsing="false" onAction="#clickOk" prefHeight="28.0" prefWidth="87.0" style="-fx-background-color: #3F48CC;" text="OK" textFill="WHITE">
-         <font>
-            <Font name="Rockwell Extra Bold" size="18.0" />
-         </font>
-      </Button>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="300.0" style="-fx-background-color: #0D062D;" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RulesController">
+   <Label alignment="CENTER" contentDisplay="TOP" layoutX="65.0" layoutY="14.0" prefHeight="50.0" prefWidth="169.0"
+          text="How to play?" textFill="WHITE">
+      <font>
+         <Font name="Rockwell Extra Bold" size="22.0"/>
+      </font>
+   </Label>
+   <Label contentDisplay="TOP" layoutX="14.0" layoutY="81.0" prefHeight="50.0" prefWidth="222.0"
+          text="WASD / &lt;&gt; - to move" textFill="WHITE">
+      <font>
+         <Font name="Rockwell Extra Bold" size="18.0"/>
+      </font>
+   </Label>
+   <Label contentDisplay="TOP" layoutX="14.0" layoutY="132.0" prefHeight="50.0" prefWidth="222.0" text="R - to shuffle"
+          textFill="WHITE">
+      <font>
+         <Font name="Rockwell Extra Bold" size="18.0"/>
+      </font>
+   </Label>
+   <Label contentDisplay="TOP" layoutX="14.0" layoutY="200.0" prefHeight="50.0" prefWidth="222.0"
+          text="E - to run solver" textFill="WHITE">
+      <font>
+         <Font name="Rockwell Extra Bold" size="18.0"/>
+      </font>
+   </Label>
+   <Label contentDisplay="TOP" layoutX="13.0" layoutY="274.0" prefHeight="50.0" prefWidth="274.0"
+          text="Space - to show solver step" textFill="WHITE" wrapText="true">
+      <font>
+         <Font name="Rockwell Extra Bold" size="18.0"/>
+      </font>
+   </Label>
+   <Button fx:id="okButton" layoutX="106.0" layoutY="340.0" mnemonicParsing="false" onAction="#clickOk"
+           prefHeight="28.0" prefWidth="87.0" style="-fx-background-color: #3F48CC;" text="OK" textFill="WHITE">
+      <font>
+         <Font name="Rockwell Extra Bold" size="18.0"/>
+      </font>
+   </Button>
 </AnchorPane>
