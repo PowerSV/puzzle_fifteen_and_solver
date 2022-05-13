@@ -14,34 +14,34 @@
             fx:controller="sample.FieldController">
     <GridPane fx:id="gridPane" gridLinesVisible="true" layoutY="100.0" prefHeight="300.0" prefWidth="300.0">
       <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="75.0" minWidth="10.0" prefWidth="75.0"/>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="75.0" minWidth="10.0" prefWidth="75.0"/>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="75.0" minWidth="10.0" prefWidth="75.0"/>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="75.0"/>
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="75.0" minWidth="10.0" prefWidth="75.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="75.0" minWidth="10.0" prefWidth="75.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="75.0" minWidth="10.0" prefWidth="75.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="75.0" />
       </columnConstraints>
       <rowConstraints>
-          <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" valignment="CENTER" vgrow="ALWAYS"/>
-          <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" valignment="CENTER" vgrow="ALWAYS"/>
-          <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" valignment="CENTER" vgrow="ALWAYS"/>
-          <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" valignment="CENTER" vgrow="ALWAYS"/>
+          <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" valignment="CENTER" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" valignment="CENTER" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" valignment="CENTER" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" valignment="CENTER" vgrow="ALWAYS" />
       </rowConstraints>
     </GridPane>
     <Label contentDisplay="TOP" layoutX="14.0" layoutY="13.0" prefHeight="45.0" prefWidth="82.0" text="SCORE"
            textFill="WHITE">
         <font>
-          <Font name="Rockwell Extra Bold" size="18.0"/>
+          <Font name="Rockwell Extra Bold" size="18.0" />
         </font>
     </Label>
     <Label fx:id="score" contentDisplay="TOP" layoutX="96.0" layoutY="13.0" prefHeight="46.0" prefWidth="55.0"
            textFill="WHITE">
         <font>
-          <Font name="Rockwell Extra Bold" size="18.0"/>
+          <Font name="Rockwell Extra Bold" size="18.0" />
         </font>
     </Label>
     <Button layoutX="170.0" layoutY="19.0" mnemonicParsing="false" onAction="#click"
             style="-fx-background-color: #3F48CC;" text="click me" textFill="WHITE">
         <font>
-          <Font name="Rockwell Extra Bold" size="18.0"/>
+          <Font name="Rockwell Extra Bold" size="18.0" />
         </font>
     </Button>
 </AnchorPane>
