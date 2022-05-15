@@ -5,37 +5,61 @@ import java.util.Random;
 
 public class Field {
 
-    public static final int SIZE = 4;
+    public static final byte SIZE = 4;
+    public static final byte[][] controlArray = new byte[][]{
+            {1, 5, 9, 13},
+            {2, 6, 10, 14},
+            {3, 7, 11, 15},
+            {4, 8, 12, 0}
+    };
 
-    private int[][] field;
-    private int zeroX;
-    private int zeroY;
+    private byte[][] field;
+    private byte zeroX;
+    private byte zeroY;
     private int score;
 
     public Field() {
-        field = new int[][]{
-                {1, 5, 9, 13},
-                {2, 6, 10, 14},
-                {3, 7, 11, 15},
-                {4, 8, 12, 0}};
+        initializeField();
         zeroX = 3;
         zeroY = 3;
         score = 0;
     }
 
-    public int[][] getField() {
+    private void initializeField() {
+        field = new byte[SIZE][SIZE];
+        byte temp = 0;
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                field[j][i] = ++temp;
+            }
+        }
+        field[SIZE - 1][SIZE - 1] = 0;
+    }
+
+    public byte[][] getField() {
         return field;
     }
 
-    public void setField(int[][] field) {
-        this.field = field;
+    public void setField(byte[][] field) {
+        this.field = deepCopy(field);
+
+        for (byte i = 0; i < SIZE; i++) {
+            for (byte j = 0; j < SIZE; j++) {
+                if (field[i][j] == 0) {
+                    zeroX = i;
+                    zeroY = j;
+                    break;
+                }
+            }
+        }
+
     }
 
     public int getScore() {
         return score;
     }
 
-    public int getValue(int x, int y) {
+    public byte getValue(int x, int y) {
         return field[x][y];
     }
 
@@ -106,11 +130,14 @@ public class Field {
         score = 0;
     }
 
-//    public int[][] arrayCopy(int[][] srcArray) {
-//        int[][] resultArray = new int[srcArray.length][];
-//        for (int i = 0; i < srcArray.length; i++) {
-//            resultArray[i] = Arrays.copyOf(srcArray[i], srcArray[i].length);
-//        }
-//        return resultArray;
-//    }
+    public static byte[][] deepCopy(byte[][] srcArray) {
+        if (srcArray == null) {
+            return null;
+        }
+        byte[][] resultArray = new byte[srcArray.length][];
+        for (int i = 0; i < srcArray.length; i++) {
+            resultArray[i] = Arrays.copyOf(srcArray[i], srcArray[i].length);
+        }
+        return resultArray;
+    }
 }
