@@ -110,7 +110,7 @@ public class Field {
     public void shuffle(){
         Random rand = new Random();
         int temp;
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             temp = rand.nextInt(4);
             switch (temp) {
                 case 0:

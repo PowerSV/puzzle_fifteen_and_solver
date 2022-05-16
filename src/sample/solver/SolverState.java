@@ -43,19 +43,28 @@ public class SolverState {
         return Math.abs(x - trueX) + Math.abs(y - trueY);
     }
 
+    public byte[][] getField() {
+        return field;
+    }
+
+    public int getHeuristic() {
+        return heuristic;
+    }
+
     public Iterable<SolverState> getNeighbors() {
         Set<SolverState> result = new HashSet<>();
-        result.add(neighborFields(deepCopy(field), (byte) (zeroX + 1), zeroY));
-        result.add(neighborFields(deepCopy(field), (byte) (zeroX - 1), zeroY));
-        result.add(neighborFields(deepCopy(field), zeroX, (byte) (zeroY + 1)));
-        result.add(neighborFields(deepCopy(field), zeroX, (byte) (zeroY - 1)));
+        result.add(neighborFields(deepCopy(field), zeroX, zeroY, zeroX, (byte) (zeroY + 1)));
+        result.add(neighborFields(deepCopy(field), zeroX, zeroY, zeroX, (byte) (zeroY - 1)));
+        result.add(neighborFields(deepCopy(field), zeroX, zeroY, (byte) (zeroX + 1), zeroY));
+        result.add(neighborFields(deepCopy(field), zeroX, zeroY, (byte) (zeroX - 1), zeroY));
         return result;
     }
 
-    private SolverState neighborFields(byte[][] field, byte x, byte y) {
-        if (x < Field.SIZE && x > -1 && y < Field.SIZE && y > -1) {
-            field[zeroY][zeroX] = field[x][y];
-            field[x][y] = 0;
+    private SolverState neighborFields(byte[][] field, byte x1, byte y1, byte x2, byte y2) {
+        if (x2 < Field.SIZE && x2 > -1 && y2 < Field.SIZE && y2 > -1) {
+            byte temp = field[x2][y2];
+            field[x2][y2] = field[x1][y1];
+            field[x1][y1] = temp;
             return new SolverState(field);
         }
         return null;

@@ -1,22 +1,29 @@
 package sample;
 
 import java.io.IOException;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Queue;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.solver.Solver;
+import sample.solver.SolverState;
 
 public class FieldController {
 
     private final Field field = new Field();
     private final View view = new View(field);
+    private Deque<SolverState> solverSteps = new ArrayDeque<>();
 
     @FXML
     private GridPane gridPane;
@@ -30,7 +37,7 @@ public class FieldController {
     void click() throws IOException {
         if (!isShow) {
             isShow = true;
-            Parent root = FXMLLoader.load(getClass().getResource("rules.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("textures/rules.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL);
@@ -66,12 +73,25 @@ public class FieldController {
                 field.shuffle();
                 updateScene();
                 break;
-//            case E:
-//                //TODO
-//                break;
-//            case SPACE:
-//                //TODO
-//                break;
+            case E:
+                System.out.println("run solver ");
+                solverSteps.clear();
+                SolverState startField = new SolverState(field.getField());
+                Solver solver = new Solver(startField);
+                solverSteps.addAll(solver.getResult());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Find solution");
+                alert.setHeaderText("solution found in " + (solverSteps.size() - 1) + " steps");
+                alert.setContentText("Press the SPACE to view the solution steps");
+                alert.showAndWait();
+                break;
+            case Q:
+                if (!solverSteps.isEmpty()) {
+                    SolverState current = solverSteps.pollLast();
+                    field.setField(current.getField());
+                    updateScene();
+                }
+                break;
         }
     }
 

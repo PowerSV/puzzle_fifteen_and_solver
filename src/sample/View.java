@@ -26,7 +26,7 @@ public class View {
     private void initializePicturesMap(){
         for (byte i = 1; i < Field.SIZE * Field.SIZE; i++) {
             try {
-                picturesMap.put(i, new Image(new FileInputStream("src/textures/" + i + ".png")));
+                picturesMap.put(i, new Image(new FileInputStream("src/sample/textures/" + i + ".png")));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
