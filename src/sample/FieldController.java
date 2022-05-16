@@ -3,7 +3,6 @@ package sample;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Queue;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +22,7 @@ public class FieldController {
 
     private final Field field = new Field();
     private final View view = new View(field);
-    private Deque<SolverState> solverSteps = new ArrayDeque<>();
+    private final Deque<SolverState> solverSteps = new ArrayDeque<>();
 
     @FXML
     private GridPane gridPane;
@@ -79,13 +78,10 @@ public class FieldController {
                 SolverState startField = new SolverState(field.getField());
                 Solver solver = new Solver(startField);
                 solverSteps.addAll(solver.getResult());
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Find solution");
-                alert.setHeaderText("solution found in " + (solverSteps.size() - 1) + " steps");
-                alert.setContentText("Press the SPACE to view the solution steps");
-                alert.showAndWait();
+                view.showSolverMessage(solverSteps);
                 break;
-            case Q:
+            case BACK_SPACE:
+                System.out.println("space");
                 if (!solverSteps.isEmpty()) {
                     SolverState current = solverSteps.pollLast();
                     field.setField(current.getField());

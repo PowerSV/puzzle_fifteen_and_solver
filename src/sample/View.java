@@ -4,12 +4,14 @@ package sample;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import sample.solver.SolverState;
 
 public class View {
 
@@ -61,11 +63,23 @@ public class View {
         }
     }
 
-    private void showWinMessage(){
+    private void showWinMessage() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("WIN");
         alert.setHeaderText("Congratulations, you have completed the puzzle!!!");
         alert.setContentText("Score: " + field.getScore());
+        alert.showAndWait();
+    }
+
+    public void showSolverMessage(Deque<SolverState> solverSteps) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Find solution");
+        if (solverSteps.isEmpty()) {
+            alert.setHeaderText("solution not found");
+        } else {
+            alert.setHeaderText("solution found in " + (solverSteps.size() - 1) + " steps");
+            alert.setContentText("Press the SPACE to view the solution steps");
+        }
         alert.showAndWait();
     }
 }

@@ -2,15 +2,17 @@ package sample.solver;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+// visited to hashset
+// Node add weight
+
 public class Solver {
 
-    private final Queue<SolverState> result = new ArrayDeque<>();;
+    private final Queue<SolverState> result = new ArrayDeque<>();
 
     public Queue<SolverState> getResult() {
         return result;
@@ -25,15 +27,15 @@ public class Solver {
         while (!openStates.isEmpty()) {
             Node currentNode = openStates.poll();
 
-            if (currentNode.state.isGoaaaaaaal()) {
+            if (currentNode.state.isFinalState()) {
                 fillResult(new Node(currentNode, currentNode.state));
                 return;
             }
             visitedStates.add(currentNode.state.hashCode());
+
             for (SolverState neighbor : currentNode.state.getNeighbors()) {
                 if (neighbor != null && !visitedStates.contains(neighbor.hashCode())) {
-                    Node temp = new Node(currentNode, neighbor);
-                    openStates.add(temp);
+                    openStates.add(new Node(currentNode, neighbor));
                 }
             }
         }
@@ -68,10 +70,6 @@ public class Solver {
         public Node(Node parent, SolverState state) {
             this.parent = parent;
             this.state = state;
-        }
-
-        public byte[][] getStateField() {
-            return state.getField();
         }
     }
 }

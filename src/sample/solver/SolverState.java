@@ -1,6 +1,8 @@
 package sample.solver;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import sample.Field;
@@ -70,7 +72,25 @@ public class SolverState {
         return null;
     }
 
-    public boolean isGoaaaaaaal() {
+    public boolean isFinalState() {
         return heuristic == 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SolverState that = (SolverState) o;
+        return zeroX == that.zeroX &&
+                zeroY == that.zeroY &&
+                heuristic == that.heuristic &&
+                Arrays.equals(field, that.field);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(zeroX, zeroY, heuristic);
+        result = 31 * result + Arrays.hashCode(field);
+        return result;
     }
 }
