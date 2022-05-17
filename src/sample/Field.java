@@ -25,6 +25,8 @@ public class Field {
         score = 0;
     }
 
+    // один из примеров на котором решатель падает с outOfMemory
+
 //    public Field() {
 //        field = new byte[][]{
 //                {1, 7, 13, 14},

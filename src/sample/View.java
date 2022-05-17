@@ -78,7 +78,7 @@ public class View {
             alert.setHeaderText("solution not found");
         } else {
             alert.setHeaderText("solution found in " + solverSteps.size() + " steps");
-            alert.setContentText("Press the SPACE to view the solution steps");
+            alert.setContentText("Press the BACKSPACE to view the solution steps");
         }
         alert.showAndWait();
     }

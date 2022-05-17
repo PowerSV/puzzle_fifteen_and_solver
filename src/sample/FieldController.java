@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -81,7 +80,7 @@ public class FieldController {
                 view.showSolverMessage(solverSteps);
                 break;
             case BACK_SPACE:
-                System.out.println("space");
+                System.out.println("BACKSPACE");
                 if (!solverSteps.isEmpty()) {
                     SolverState current = solverSteps.pollLast();
                     field.setField(current.getField());
