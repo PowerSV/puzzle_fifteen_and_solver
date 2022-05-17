@@ -1,16 +1,11 @@
 package sample.solver;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
-
-// visited to hashset
-// Node add weight
 
 public class Solver {
 
@@ -22,7 +17,7 @@ public class Solver {
 
     public Solver(SolverState startState) {
         Queue<Node> openStates = new PriorityQueue<>(Comparator.comparing(Node::getWeight));
-        Set<SolverState> visitedStates = new HashSet<>();
+        Set<Integer> visitedStates = new HashSet<>();
 
         Node startNode = new Node(null, startState);
         openStates.add(startNode);
@@ -34,14 +29,13 @@ public class Solver {
                 fillResult(new Node(currentNode, currentNode.state));
                 return;
             }
-
+            visitedStates.add(currentNode.state.hashCode());
             for (SolverState neighbor : currentNode.state.getNeighbors()) {
-                if (neighbor != null && !visitedStates.contains(neighbor)) {
+                if (!visitedStates.contains(neighbor.hashCode())) {
                     Node temp = new Node(currentNode, neighbor);
                     openStates.add(temp);
                 }
             }
-            visitedStates.add(currentNode.state);
         }
     }
 
@@ -61,7 +55,7 @@ public class Solver {
 
     private void fillResult(Node node) {
         Node currentNode = node.parent;
-        while (currentNode != null) {
+        while (currentNode.parent != null) {
             result.add(currentNode.state);
             currentNode = currentNode.parent;
         }
@@ -70,8 +64,8 @@ public class Solver {
     private static class Node {
         private final Node parent;
         private final SolverState state;
-        private int g;
-        private int weight;
+        private final int g; // количесвто шагов от старта
+        private final int weight;
 
         public int getG() {
             return g;

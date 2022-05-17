@@ -77,7 +77,7 @@ public class View {
         if (solverSteps.isEmpty()) {
             alert.setHeaderText("solution not found");
         } else {
-            alert.setHeaderText("solution found in " + (solverSteps.size() - 1) + " steps");
+            alert.setHeaderText("solution found in " + solverSteps.size() + " steps");
             alert.setContentText("Press the SPACE to view the solution steps");
         }
         alert.showAndWait();
