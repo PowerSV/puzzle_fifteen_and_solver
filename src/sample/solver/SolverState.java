@@ -93,13 +93,13 @@ public class SolverState {
         return zeroX == that.zeroX &&
                 zeroY == that.zeroY &&
                 heuristic == that.heuristic &&
-                Arrays.equals(field, that.field);
+                Arrays.deepEquals(field, that.field);
     }
 
     @Override
     public int hashCode() {
         int result = Objects.hash(zeroX, zeroY, heuristic);
-        result = 31 * result + Arrays.hashCode(field);
+        result = 31 * result + Arrays.deepHashCode(field);
         return result;
     }
 }

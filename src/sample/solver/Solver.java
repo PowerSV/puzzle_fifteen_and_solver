@@ -38,17 +38,6 @@ public class Solver {
         }
     }
 
-    private boolean containsInPath(Node node, SolverState state) {
-        Node currentNode = node;
-        while (currentNode != null) {
-            if (currentNode.state.equals(state)) {
-                return true;
-            }
-            currentNode = currentNode.parent;
-        }
-        return false;
-    }
-
     private void fillResult(Node node) {
         Node currentNode = node.parent;
         while (currentNode.parent != null) {
