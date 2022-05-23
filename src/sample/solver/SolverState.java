@@ -43,7 +43,7 @@ public class SolverState {
         int trueX = (value - 1) % 4;
         int trueY = (value - 1) / 4;
         int result = Math.abs(x - trueX) + Math.abs(y - trueY);
-        if (value == 15 || value == 12) {
+        if ((value == 15 || value == 12) && result != 1) {
             result += 2;
         }
         return result;

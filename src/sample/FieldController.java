@@ -80,7 +80,6 @@ public class FieldController {
                 view.showSolverMessage(solverSteps);
                 break;
             case BACK_SPACE:
-                System.out.println("BACKSPACE");
                 if (!solverSteps.isEmpty()) {
                     SolverState current = solverSteps.pollLast();
                     field.setField(current.getField());

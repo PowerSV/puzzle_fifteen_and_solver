@@ -31,7 +31,7 @@ public class Solver {
             }
             visitedStates.add(currentNode.state);
             for (SolverState neighbor : currentNode.state.getNeighbors()) {
-                if (!visitedStates.contains(neighbor) && !containsInPath(currentNode, neighbor)) {
+                if (!visitedStates.contains(neighbor)) {
                     openStates.add(new Node(currentNode, neighbor));
                 }
             }

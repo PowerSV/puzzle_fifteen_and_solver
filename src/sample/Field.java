@@ -17,26 +17,26 @@ public class Field {
     private byte zeroY;
     private int score;
 
-    public Field() {
-        initializeField();
-        zeroX = 3;
-        zeroY = 3;
-        score = 0;
-    }
+//    public Field() {
+//        initializeField();
+//        zeroX = 3;
+//        zeroY = 3;
+//        score = 0;
+//    }
 
 //     один из примеров на котором решатель падает с outOfMemory
 //
-//    public Field() {
-//        field = new byte[][]{
-//                {1, 7, 13, 14},
-//                {2, 3, 6, 9},
-//                {11, 5, 12, 15},
-//                {4, 0, 10, 8}
-//        };
-//        zeroX = 3;
-//        zeroY = 1;
-//        score = 0;
-//    }
+    public Field() {
+        field = new byte[][]{
+                {1, 7, 13, 14},
+                {2, 3, 6, 9},
+                {11, 5, 12, 15},
+                {4, 0, 10, 8}
+        };
+        zeroX = 3;
+        zeroY = 1;
+        score = 0;
+    }
 
     private void initializeField() {
         field = new byte[SIZE][SIZE];
