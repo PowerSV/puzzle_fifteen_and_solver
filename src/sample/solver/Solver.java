@@ -2,6 +2,7 @@ package sample.solver;
 
 import java.util.ArrayDeque;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -9,49 +10,44 @@ import java.util.Set;
 
 public class Solver {
 
-    private final Queue<SolverState> result = new ArrayDeque<>();
+    private final Deque<SolverState> result = new ArrayDeque<>();
 
-    public Queue<SolverState> getResult() {
+    public Deque<SolverState> getResult() {
         return result;
     }
 
     public Solver(SolverState startState) {
         Queue<Node> openStates = new PriorityQueue<>(Comparator.comparing(Node::getWeight));
-        Set<Integer> visitedStates = new HashSet<>();
+        Set<SolverState> visitedStates = new HashSet<>();
 
         Node startNode = new Node(null, startState);
         openStates.add(startNode);
 
         while (!openStates.isEmpty()) {
             Node currentNode = openStates.poll();
-
             if (currentNode.state.isFinalState()) {
                 fillResult(new Node(currentNode, currentNode.state));
                 return;
             }
-            visitedStates.add(currentNode.state.hashCode());
+            visitedStates.add(currentNode.state);
             for (SolverState neighbor : currentNode.state.getNeighbors()) {
-                if (!visitedStates.contains(neighbor.hashCode())) {
-                    Node temp = new Node(currentNode, neighbor);
-                    openStates.add(temp);
+                if (!visitedStates.contains(neighbor) && !containsInPath(currentNode, neighbor)) {
+                    openStates.add(new Node(currentNode, neighbor));
                 }
             }
         }
     }
 
-//    private int getWeight(Node node) {
-//        return node.getG() + node.state.getHeuristic();
-//    }
-
-//    private int calculatePath(Node nodeState) {
-//        Node currentNode = nodeState.parent;
-//        int pathCounter = 0;
-//        while (currentNode != null) {
-//            pathCounter++;
-//            currentNode = currentNode.parent;
-//        }
-//        return pathCounter;
-//    }
+    private boolean containsInPath(Node node, SolverState state) {
+        Node currentNode = node;
+        while (currentNode != null) {
+            if (currentNode.state.equals(state)) {
+                return true;
+            }
+            currentNode = currentNode.parent;
+        }
+        return false;
+    }
 
     private void fillResult(Node node) {
         Node currentNode = node.parent;

@@ -1,9 +1,7 @@
 package sample.solver;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -19,7 +17,7 @@ public class SolverState {
     private int heuristic;
 
     public SolverState(byte[][] field) {
-        this.field = deepCopy(field);
+        this.field = field;
 
         heuristic = 0;
         for (byte i = 0; i < field.length; i++) {
@@ -31,73 +29,25 @@ public class SolverState {
                     continue;
                 }
 
-                heuristic += calculateManhattanPath(field[i][j], i, j);
+                heuristic += calculateHeuristic(field[i][j], i, j);
             }
         }
-        //        heuristic += linearConflicts(field);
+
     }
 
-    private int calculateManhattanPath(byte value, byte x, byte y) {
+    private int calculateHeuristic(byte value, byte x, byte y) {
         if (Field.controlArray[x][y] == value) {
             return 0;
         }
 
         int trueX = (value - 1) % 4;
         int trueY = (value - 1) / 4;
-
-        return Math.abs(x - trueX) + Math.abs(y - trueY);
+        int result = Math.abs(x - trueX) + Math.abs(y - trueY);
+        if (value == 15 || value == 12) {
+            result += 2;
+        }
+        return result;
     }
-
-    // расширение эвристики.
-    // если две клетки находятся на своей строке,
-    // но при этом их порядок нарушен, то нужно сделать еще как минимум 2 шага, для перестановки,
-    // чтобы получить правильный порядок.
-    // То же самое если клетки находятся в своем стобце.
-
-//    private int linearConflicts(byte[][] field) {
-//        int result = 0;
-//
-//        List<Byte> inOwnColumn = new ArrayList<>();
-//        for (int i = 0; i < Field.SIZE; i++) {
-//            // находим конфликты в столбцах
-//            for (byte value : field[i]) {
-//                int trueX = (value - 1) % 4;
-//                if (trueX == i) {
-//                    inOwnColumn.add(value);
-//                }
-//            }
-//            result += findConflicts(inOwnColumn);
-//
-//            // находим конфликты в строках
-//            byte[] temp = new byte[Field.SIZE];
-//            for (int j = 0; j < Field.SIZE; j++) {
-//                temp[j] = field[j][i];
-//            }
-//
-//            for (byte value : temp) {
-//                int trueY = (value - 1) / 4;
-//                if (trueY == i) {
-//                    inOwnColumn.add(value);
-//                }
-//            }
-//            result += findConflicts(inOwnColumn);
-//        }
-//
-//        return result;
-//    }
-
-//    private int findConflicts(List<Byte> inOwnColumnOrRow) {
-//        int counter = 0;
-//        if (inOwnColumnOrRow.size() > 1) {
-//            for (int j = 1; j < inOwnColumnOrRow.size(); j++) {
-//                if (inOwnColumnOrRow.get(j) < inOwnColumnOrRow.get(j - 1)) {
-//                    counter++;
-//                }
-//            }
-//        }
-//        inOwnColumnOrRow.clear();
-//        return counter * 2;
-//    }
 
     public byte[][] getField() {
         return field;

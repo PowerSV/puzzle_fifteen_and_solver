@@ -1,6 +1,5 @@
 package sample;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Field {
@@ -25,8 +24,8 @@ public class Field {
         score = 0;
     }
 
-    // один из примеров на котором решатель падает с outOfMemory
-
+//     один из примеров на котором решатель падает с outOfMemory
+//
 //    public Field() {
 //        field = new byte[][]{
 //                {1, 7, 13, 14},
@@ -150,7 +149,7 @@ public class Field {
         }
         byte[][] resultArray = new byte[srcArray.length][];
         for (int i = 0; i < srcArray.length; i++) {
-            resultArray[i] = Arrays.copyOf(srcArray[i], srcArray[i].length);
+            resultArray[i] = srcArray[i].clone();
         }
         return resultArray;
     }
