@@ -39,11 +39,11 @@ public class SolverState {
         if (Field.controlArray[x][y] == value) {
             return 0;
         }
-
         int trueX = (value - 1) % 4;
         int trueY = (value - 1) / 4;
         int result = Math.abs(x - trueX) + Math.abs(y - trueY);
-        if ((value == 15 || value == 12) && result != 1) {
+
+        if (value == 15 && y != 3 || value == 12 && x != 3) {
             result += 2;
         }
         return result;

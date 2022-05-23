@@ -18,21 +18,10 @@ public class Field {
     private int score;
 
     public Field() {
-        initializeField();
+        field = deepCopy(controlArray);
         zeroX = 3;
         zeroY = 3;
         score = 0;
-    }
-
-    private void initializeField() {
-        field = new byte[SIZE][SIZE];
-        byte temp = 0;
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                field[j][i] = ++temp;
-            }
-        }
-        field[SIZE - 1][SIZE - 1] = 0;
     }
 
     public byte[][] getField() {
@@ -40,14 +29,16 @@ public class Field {
     }
 
     public void setField(byte[][] field) {
-        this.field = deepCopy(field);
+        this.field = new byte[field.length][];
 
         for (byte i = 0; i < SIZE; i++) {
+            this.field[i] = new byte[field[i].length];
             for (byte j = 0; j < SIZE; j++) {
+                this.field[i][j] = field[i][j];
+
                 if (field[i][j] == 0) {
                     zeroX = i;
                     zeroY = j;
-                    break;
                 }
             }
         }

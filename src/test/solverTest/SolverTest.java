@@ -2,7 +2,7 @@ package test.solverTest;
 
 import java.util.Arrays;
 import java.util.Deque;
-import java.util.Queue;
+import java.util.Random;
 
 import org.junit.Test;
 
@@ -17,7 +17,12 @@ public class SolverTest {
     public void solverTest() {
         for (int i = 0; i < 10; i++) {
             Field field = new Field();
-            field.shuffle();
+            Random rand = new Random();
+
+            for (int j = 0; j < rand.nextInt(5) + 1; j++) {
+                field.shuffle();
+            }
+
             SolverState startState = new SolverState(field.getField());
             Solver solver = new Solver(startState);
 
