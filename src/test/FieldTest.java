@@ -1,5 +1,6 @@
 package test;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import sample.Field;
@@ -7,11 +8,10 @@ import sample.Field;
 import static org.junit.Assert.assertArrayEquals;
 
 public class FieldTest {
-    private Field field = new Field();
 
     @Test
     public void moveTest() {
-        field = new Field();
+        Field field = new Field();
         field.moveRight();
         assertArrayEquals(field.getField(), new byte[][] {
                 {1, 5, 9, 13},
